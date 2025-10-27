@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Resources\AccountResource;
 use App\Filament\Resources\InstitutionResource;
+use App\Filament\Resources\SubscriptionResource;
 use App\Filament\Widgets\AccountSummaryWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -37,6 +38,7 @@ class AdminPanelProvider extends PanelProvider
             ->resources([
                 InstitutionResource::class,
                 AccountResource::class,
+                SubscriptionResource::class,
             ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
