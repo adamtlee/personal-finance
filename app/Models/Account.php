@@ -12,6 +12,7 @@ class Account extends Model
         'type',
         'amount',
         'user_id',
+        'institution_id',
     ];
 
     protected $casts = [
@@ -21,6 +22,11 @@ class Account extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function institution(): BelongsTo
+    {
+        return $this->belongsTo(Institution::class);
     }
 
     public static function getTypes(): array

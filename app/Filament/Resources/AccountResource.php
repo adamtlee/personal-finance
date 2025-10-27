@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AccountResource\Pages;
 use App\Filament\Resources\AccountResource\RelationManagers;
 use App\Models\Account;
+use App\Models\Institution;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -39,6 +40,41 @@ class AccountResource extends Resource
                     ->options(Account::getTypes())
                     ->label('Account Type'),
                 
+                Forms\Components\Select::make('institution_id')
+                    ->label('Institution')
+                    ->options(function () {
+                        $institutions = Institution::orderBy('name')->get();
+                        return $institutions->pluck('name', 'id')->toArray();
+                    })
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Select an institution')
+                    ->helperText('Choose the bank or investment company for this account')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255)
+                            ->label('Institution Name'),
+                        
+                        Forms\Components\Select::make('type')
+                            ->required()
+                            ->options(Institution::getTypes())
+                            ->label('Institution Type'),
+                        
+                        Forms\Components\TextInput::make('website')
+                            ->url()
+                            ->maxLength(255)
+                            ->label('Website'),
+                        
+                        Forms\Components\Textarea::make('description')
+                            ->maxLength(1000)
+                            ->rows(3)
+                            ->label('Description'),
+                    ])
+                    ->createOptionUsing(function (array $data): int {
+                        return Institution::create($data)->getKey();
+                    }),
+                
                 Forms\Components\TextInput::make('amount')
                     ->required()
                     ->numeric()
@@ -72,6 +108,12 @@ class AccountResource extends Resource
                     ->sortable()
                     ->label('Account Type'),
                 
+                Tables\Columns\TextColumn::make('institution.name')
+                    ->searchable()
+                    ->sortable()
+                    ->placeholder('No institution')
+                    ->label('Institution'),
+                
                 Tables\Columns\TextColumn::make('amount')
                     ->money('USD')
                     ->sortable()
@@ -87,6 +129,12 @@ class AccountResource extends Resource
                 Tables\Filters\SelectFilter::make('type')
                     ->options(Account::getTypes())
                     ->label('Account Type'),
+                
+                Tables\Filters\SelectFilter::make('institution_id')
+                    ->label('Institution')
+                    ->relationship('institution', 'name')
+                    ->searchable()
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
