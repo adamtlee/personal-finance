@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\InstitutionResource\Pages;
 
 use App\Filament\Resources\InstitutionResource;
+use App\Filament\Resources\InstitutionResource\Actions\ExportInstitutionsAction;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -14,6 +15,7 @@ class ListInstitutions extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            ExportInstitutionsAction::make(),
         ];
     }
 }

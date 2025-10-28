@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\AccountResource\Pages;
 
 use App\Filament\Resources\AccountResource;
+use App\Filament\Resources\AccountResource\Actions\ExportAccountsAction;
 use App\Models\Account;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -16,6 +17,7 @@ class ListAccounts extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            ExportAccountsAction::make(),
         ];
     }
     
