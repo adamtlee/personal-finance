@@ -21,3 +21,4 @@ class ExportSubscriptionsAction extends Action
             ->url(fn () => route('subscriptions.export'));
     }
 }
+

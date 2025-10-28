@@ -21,3 +21,4 @@ class ExportAccountsAction extends Action
             ->url(fn () => route('accounts.export'));
     }
 }
+
