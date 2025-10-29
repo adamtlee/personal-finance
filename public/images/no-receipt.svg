@@ -1,0 +1,5 @@
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+  <rect width="40" height="40" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
+  <text x="20" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#6b7280">No</text>
+  <text x="20" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#6b7280">Receipt</text>
+</svg>

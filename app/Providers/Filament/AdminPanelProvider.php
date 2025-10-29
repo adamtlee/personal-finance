@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Resources\AccountResource;
+use App\Filament\Resources\ExpenseResource;
 use App\Filament\Resources\InstitutionResource;
 use App\Filament\Resources\SubscriptionResource;
 use App\Filament\Widgets\AccountSummaryWidget;
@@ -39,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
                 InstitutionResource::class,
                 AccountResource::class,
                 SubscriptionResource::class,
+                ExpenseResource::class,
             ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
