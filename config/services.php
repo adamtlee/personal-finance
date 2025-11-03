@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'bigdata' => [
+        'api_key' => env('BIG_DATA_API_KEY'),
+    ],
+
 ];
