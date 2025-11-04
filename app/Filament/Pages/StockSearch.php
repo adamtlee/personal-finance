@@ -86,5 +86,41 @@ class StockSearch extends Page
                 }),
         ];
     }
+
+    /**
+     * Format a value for display
+     */
+    public function formatValue($value): string
+    {
+        if (is_bool($value)) {
+            return $value ? 'Yes' : 'No';
+        }
+        
+        if (is_null($value)) {
+            return 'N/A';
+        }
+        
+        if (is_array($value)) {
+            return json_encode($value, JSON_PRETTY_PRINT);
+        }
+        
+        return (string) $value;
+    }
+
+    /**
+     * Check if a value is a nested array/object
+     */
+    public function isNested($value): bool
+    {
+        return is_array($value) && !empty($value) && (array_keys($value) !== range(0, count($value) - 1));
+    }
+
+    /**
+     * Check if a value is a simple list
+     */
+    public function isList($value): bool
+    {
+        return is_array($value) && !empty($value) && (array_keys($value) === range(0, count($value) - 1));
+    }
 }
 
